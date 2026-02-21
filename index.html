@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>SARAFAN — прототип</title>
+    <script>
+      document.documentElement.classList.add('js');
+    </script>
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <div class="app" id="app">
+      <header class="topbar" id="topbar">
+        <button class="icon-btn" id="backBtn" type="button" aria-label="Назад" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5L8 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="topbar__title" id="topbarTitle">SARAFAN</div>
+        <button class="icon-btn" id="menuBtn" type="button" aria-label="Меню" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </header>
+
+      <main class="screen" id="screenRoot">
+        <!-- Splash (PDF page 1) -->
+        <section class="view" id="splash" data-route="splash">
+          <div class="splash">
+            <div class="splash__mark">SARAFAN</div>
+            <div class="splash__sub">FROM HAND TO HAND</div>
+            <a class="btn btn--primary" href="#role" data-nav="#role">Начать</a>
+          </div>
+        </section>
+
+        <!-- Registration: role (PDF page 2) -->
+        <section class="view" id="role" data-route="role">
+          <div class="container">
+            <h1 class="h1">Регистрация</h1>
+            <div class="seg" role="radiogroup" aria-label="Роль">
+              <button class="seg__item" type="button" data-role="business">я - бизнесмен</button>
+              <button class="seg__item" type="button" data-role="client">я - клиент</button>
+            </div>
+            <div class="hint">Роль можно поменять позже в профиле.</div>
+            <button class="btn btn--primary" type="button" id="roleNext" disabled>Далее</button>
+          </div>
+        </section>
+
+        <!-- Registration: base info (PDF page 3) -->
+        <section class="view" id="reg" data-route="reg">
+          <div class="container">
+            <h1 class="h1">Регистрация</h1>
+
+            <label class="field">
+              <span class="field__label">ФИО</span>
+              <input class="input" id="regName" autocomplete="name" placeholder="Иванов Иван" />
+            </label>
+
+            <label class="field">
+              <span class="field__label">Телефон</span>
+              <input class="input" id="regPhone" autocomplete="tel" placeholder="+44 000 000 000 00" inputmode="tel" />
+            </label>
+
+            <label class="field">
+              <span class="field__label">Email</span>
+              <input class="input" id="regEmail" autocomplete="email" placeholder="Ivanov@gmail.com" inputmode="email" />
+            </label>
+
+            <label class="field">
+              <span class="field__label">город проживания</span>
+              <input class="input" id="regCityInline" list="cities" placeholder="Лондон" />
+            </label>
+
+            <a class="btn btn--primary" id="regNext" href="#city" data-nav="#city">Далее</a>
+          </div>
+        </section>
+
+        <!-- Registration: city (PDF page 4) -->
+        <section class="view" id="city" data-route="city">
+          <div class="container">
+            <h1 class="h1">Регистрация</h1>
+
+            <label class="field">
+              <span class="field__label">город проживания</span>
+              <input class="input" id="regCity" list="cities" placeholder="Лондон" />
+              <datalist id="cities">
+                <option value="Москва"></option>
+                <option value="Санкт‑Петербург"></option>
+                <option value="Казань"></option>
+                <option value="Екатеринбург"></option>
+                <option value="Новосибирск"></option>
+                <option value="Лондон"></option>
+              </datalist>
+            </label>
+
+            <a class="btn btn--primary" href="#photo" data-nav="#photo">Далее</a>
+          </div>
+        </section>
+
+        <!-- Registration: photo (PDF page 5) -->
+        <section class="view" id="photo" data-route="photo">
+          <div class="container">
+            <h1 class="h1">Регистрация</h1>
+
+            <div class="upload">
+              <div class="avatar" id="avatarPreview" aria-label="Фото профиля"></div>
+              <label class="btn btn--ghost" for="avatarInput">загрузить фото</label>
+              <input id="avatarInput" class="sr-only" type="file" accept="image/*" />
+            </div>
+
+            <button class="btn btn--primary" type="button" id="saveProfile">Сохранить</button>
+          </div>
+        </section>
+
+        <!-- Client home: search hint (PDF page 6) -->
+        <section class="view" id="client-home" data-route="client-home">
+          <div class="container">
+            <div class="cityline">
+              <button class="chip" type="button" id="cityChip"></button>
+            </div>
+
+            <label class="field">
+              <span class="field__label sr-only">Поиск</span>
+              <input class="input input--search" id="clientSearch" placeholder="что ищете?" />
+              <div class="field__hint">сделайте запрос в поисковой строке</div>
+            </label>
+
+            <div class="section-title">Категории</div>
+            <div class="card-list">
+              <button class="card" type="button" data-category="Организация праздников">
+                <div class="card__title">Организация праздников</div>
+                <div class="card__meta">Ведущие, декор, кейтеринг</div>
+              </button>
+              <button class="card" type="button" data-category="Ремонт и строительство">
+                <div class="card__title">Ремонт и строительство</div>
+                <div class="card__meta">Мастера, монтаж, отделка</div>
+              </button>
+              <button class="card" type="button" data-category="Красота">
+                <div class="card__title">Красота</div>
+                <div class="card__meta">Парикмахеры, визаж, массаж</div>
+              </button>
+            </div>
+
+            <div class="divider"></div>
+
+            <a class="btn btn--ghost" href="#requests" data-nav="#requests">Мои запросы</a>
+          </div>
+        </section>
+
+        <!-- Category (PDF page 7) + list (PDF page 8) -->
+        <section class="view" id="category" data-route="category">
+          <div class="container">
+            <h1 class="h1" id="categoryTitle">Организация праздников</h1>
+
+            <div class="chips" role="tablist" aria-label="Сортировка">
+              <button class="chip chip--active" type="button" data-sort="last" role="tab" aria-selected="true">Last added</button>
+              <button class="chip" type="button" data-sort="rating" role="tab" aria-selected="false">High rating</button>
+            </div>
+
+            <div class="card-list" id="businessList"></div>
+          </div>
+        </section>
+
+        <!-- Business detail (PDF page 9) -->
+        <section class="view" id="business" data-route="business">
+          <div class="container">
+            <div class="biz-hero">
+              <div class="biz-hero__avatar" id="bizAvatar"></div>
+              <div class="biz-hero__info">
+                <div class="biz-hero__name" id="bizName">Text</div>
+                <div class="biz-hero__rating" id="bizRating">4.8 · 120 reviews</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card__row">
+                <div class="card__label">Address</div>
+                <div class="card__value" id="bizAddress">31 Rose Way</div>
+              </div>
+            </div>
+
+            <div class="card-list">
+              <button class="card card--action" type="button" id="bizDirections">Get Directions</button>
+              <button class="card card--action" type="button" id="bizBenefits">Explore benefits</button>
+              <button class="card card--action" type="button" id="bizReview">write a review</button>
+            </div>
+
+            <div class="divider"></div>
+            <button class="btn btn--primary" type="button" id="createRequestFromBiz">Сделать запрос</button>
+          </div>
+        </section>
+
+        <!-- Client requests -->
+        <section class="view" id="requests" data-route="requests">
+          <div class="container">
+            <h1 class="h1">Мои запросы</h1>
+            <div class="card-list" id="requestList"></div>
+            <a class="btn btn--ghost" href="#client-home" data-nav="#client-home">К поиску</a>
+          </div>
+        </section>
+
+        <!-- Businessman home (requests feed) -->
+        <section class="view" id="biz-home" data-route="biz-home">
+          <div class="container">
+            <div class="cityline">
+              <button class="chip" type="button" id="bizCityChip"></button>
+            </div>
+            <h1 class="h1">Запросы рядом</h1>
+            <div class="card-list" id="bizRequestFeed"></div>
+          </div>
+        </section>
+
+        <!-- Profile (both roles) -->
+        <section class="view" id="profile" data-route="profile">
+          <div class="container">
+            <h1 class="h1">Профиль</h1>
+            <div class="profile">
+              <div class="avatar avatar--lg" id="profileAvatar"></div>
+              <div class="profile__meta">
+                <div class="profile__name" id="profileName">—</div>
+                <div class="profile__city" id="profileCity">—</div>
+                <div class="profile__role" id="profileRole">—</div>
+              </div>
+            </div>
+
+            <button class="btn btn--ghost" type="button" id="switchRole">Сменить роль</button>
+            <button class="btn btn--ghost" type="button" id="resetAll">Сбросить прототип</button>
+          </div>
+        </section>
+      </main>
+
+      <nav class="bottombar" id="bottombar" hidden>
+        <button class="tab" type="button" data-tab="client-home">
+          <span class="tab__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M10 18a8 8 0 115.3-14 8 8 0 01-5.3 14zm8.7 2.3l-4.2-4.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </span>
+          <span class="tab__label">Поиск</span>
+        </button>
+        <button class="tab" type="button" data-tab="requests">
+          <span class="tab__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M7 7h10M7 12h10M7 17h7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </span>
+          <span class="tab__label">Запросы</span>
+        </button>
+        <button class="tab" type="button" data-tab="biz-home">
+          <span class="tab__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 21s7-4.4 7-11a7 7 0 10-14 0c0 6.6 7 11 7 11z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 11.5a2 2 0 100-4 2 2 0 000 4z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          </span>
+          <span class="tab__label">Лента</span>
+        </button>
+        <button class="tab" type="button" data-tab="profile">
+          <span class="tab__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M20 21a8 8 0 10-16 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 12a4 4 0 100-8 4 4 0 000 8z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          </span>
+          <span class="tab__label">Профиль</span>
+        </button>
+      </nav>
+
+      <div class="sheet" id="sheet" hidden>
+        <div class="sheet__backdrop" data-sheet-close></div>
+        <div class="sheet__panel" role="dialog" aria-modal="true">
+          <div class="sheet__handle"></div>
+          <div class="sheet__title" id="sheetTitle">Запрос</div>
+          <div class="sheet__body" id="sheetBody"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="assets/app.js"></script>
+  </body>
+</html>
