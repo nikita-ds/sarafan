@@ -1,0 +1,4 @@
+.wrap{min-height:100vh;display:grid;align-content:center;justify-items:center;gap:14px;padding:0 14px 50px;}
+.mark{font-size:38px;font-weight:900;letter-spacing:.12em;}
+.sub{font-size:13px;letter-spacing:.3em;color:#6b7280;margin-bottom:12px;}
+.btn{max-width:430px;}

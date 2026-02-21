@@ -1,0 +1,7 @@
+.bar{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:100%;max-width:430px;padding:10px 12px calc(10px + env(safe-area-inset-bottom, 0px));background:rgba(245,246,250,.92);backdrop-filter:saturate(1.2) blur(12px);border-top:1px solid rgba(229,231,235,.8);display:grid;gap:8px;}
+.cols3{grid-template-columns:repeat(3,1fr);}
+.cols2{grid-template-columns:repeat(2,1fr);}
+.tab{border:1px solid transparent;background:transparent;border-radius:14px;padding:8px 6px;color:#6b7280;display:grid;justify-items:center;gap:6px;cursor:pointer;}
+.icon{width:22px;height:22px;}
+.label{font-size:11px;font-weight:700;}
+.active{color:#0b0b0f;background:#fff;border-color:#e5e7eb;box-shadow:0 2px 10px rgba(0,0,0,.03);}

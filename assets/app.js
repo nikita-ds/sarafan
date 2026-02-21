@@ -92,6 +92,7 @@ const $$ = (sel) => Array.from(document.querySelectorAll(sel));
 const topbarTitle = $("#topbarTitle");
 const backBtn = $("#backBtn");
 const bottombar = $("#bottombar");
+const menuBtn = $("#menuBtn");
 
 function setActiveRoute(route) {
   const views = $$(".view");
@@ -109,7 +110,10 @@ function setHash(route) {
 
 function setTopbar(title, { showBack = false } = {}) {
   topbarTitle.textContent = title;
-  backBtn.hidden = !showBack;
+  // Use visibility instead of the HTML `hidden` attribute (we rely on the 3-column grid
+  // to keep the title perfectly centered).
+  backBtn.classList.toggle("is-invisible", !showBack);
+  if (menuBtn) menuBtn.classList.add("is-invisible");
 }
 
 function roleLabel(role) {
@@ -593,6 +597,8 @@ function onRouteChange() {
     setHash(route);
     return;
   }
+
+  document.body.dataset.route = route;
 
   // header titles/back behavior
   const backRoutes = new Set(["category", "business", "requests", "profile"]);

@@ -1,0 +1,6 @@
+.root{position:fixed;inset:0;display:grid;place-items:end center;z-index:50;}
+.backdrop{position:absolute;inset:0;background:rgba(0,0,0,.35);}
+.panel{position:relative;width:100%;max-width:430px;background:#fff;border-radius:22px 22px 0 0;border:1px solid rgba(229,231,235,.9);box-shadow:0 20px 40px rgba(0,0,0,.18);padding:10px 14px 16px;padding-bottom:calc(16px + env(safe-area-inset-bottom, 0px));}
+.handle{width:48px;height:5px;border-radius:999px;background:#e5e7eb;margin:6px auto 8px;}
+.title{font-weight:900;font-size:16px;margin:2px 0 10px;}
+.body{display:grid;gap:10px;}
